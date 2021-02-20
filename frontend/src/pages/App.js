@@ -16,6 +16,7 @@ import Popup from './Popup';
 
 // Constant import
 import * as ROUTES from '../constants/routes';
+import { Typography } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -34,6 +35,11 @@ function App() {
       <Router>
         {/* Navigation bar */}
         <LogoButton />
+
+        {/* Headline */}
+        <Typography variant="h6" align="center">
+          <b>Making your research experience ab<i>cell</i>utely <i>c</i>t<i>ell</i>ar.</b>
+        </Typography>
 
         {/* Main pages: route-based rendering */}
         <Box className={classes.box}>

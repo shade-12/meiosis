@@ -34,7 +34,7 @@ function Popup() {
 	return (
 		<Grid container alignItems="center" spacing={2} className={classes.container}>
             
-
+            
 		</Grid>
 	);
 }

@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: theme.spacing(3)
+        padding: theme.spacing(3, 0, 3, 0)
     },
     logo: {
         width: '4rem',
