@@ -4,6 +4,7 @@ from typing import Set
 
 def parse_site_keywords(url: str) -> Set[str]:
     """ Parse website represented by input url and return a list of keywords from the site.
+
     :param url: string that denotes the input site
     :return: list of site keywords
     """
