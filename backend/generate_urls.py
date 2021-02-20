@@ -18,7 +18,7 @@ def generate_related_sites(origin: str, keywords: Set[str]) -> List[Tuple[str, s
     search_str = ' '.join(keywords)
     search_res = requests.get(SERP_API_URL, {
         'engine': 'google',
-        'api_key': SERP_API_KEY,
+        'api_key': '95ba77e0c305ed8f2e4bec27de1445f02e36ad3693c32e15d6e95ee5f33cbd1b',
         'q': search_str,
         'location': 'Vancouver'
     }).json()
