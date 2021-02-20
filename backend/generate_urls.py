@@ -3,6 +3,7 @@ from typing import Set, List, Tuple
 from backend.parse_site_keywords import parse_site_keywords
 
 SERP_API_URL = 'https://serpapi.com/search'
+RET_SITES_COUNT = 4
 
 
 def generate_related_sites(origin: str, keywords: Set[str]) -> List[Tuple[str, str]]:
@@ -25,7 +26,7 @@ def generate_related_sites(origin: str, keywords: Set[str]) -> List[Tuple[str, s
     for res in search_res['organic_results']:
         if res['link'] != origin:
             ret.append((res['title'], res['link']))
-        if len(ret) == 4:
+        if len(ret) == RET_SITES_COUNT:
             break
 
     return ret
