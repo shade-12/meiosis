@@ -6,11 +6,11 @@ import * as COLORS from '../constants/colors';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: COLORS.MAIN_BLUE,
-            contrastText: COLORS.MAIN_YELLOW,
+            main: COLORS.MAIN_GREEN,
+            contrastText: COLORS.MAIN_PURPLE,
         },
         secondary: {
-            main: COLORS.MAIN_YELLOW
+            main: COLORS.MAIN_PURPLE
         }
     },
     typography: {
@@ -35,7 +35,7 @@ const theme = createMuiTheme({
         },
         MuiInputBase: {
             input: {
-                color: COLORS.MAIN_YELLOW
+                color: COLORS.MAIN_PURPLE
             }
         }
     }
