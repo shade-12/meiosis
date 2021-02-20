@@ -16,12 +16,13 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: theme.spacing(3)
     },
     logo: {
         width: '4rem',
-        height: '4rem',
-        
+        height: '4rem'
     }
 }));
 
