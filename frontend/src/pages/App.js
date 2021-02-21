@@ -48,7 +48,7 @@ function App() {
 
   return (
     // <AppContext.Provider value={appData}>
-      <Router>
+      // <Router>
         <Box className={classes.box}>
           {/* Navigation bar */}
           <LogoButton />
@@ -59,28 +59,29 @@ function App() {
           </Typography>
 
           <br />
+          <Popup />
           
           {/* Main pages: route-based rendering */}
-          <Switch>
-            {/* <Route
+          {/* <Switch>
+            <Route
               exact
               path={ROUTES.HOME}
               render={() => <Home />}
-            /> */}
+            />
             <Route
               exact
               path={ROUTES.POPUP}
               render={() => <Popup />}
             />
-            {/* <Route
+            <Route
               exact
               path={ROUTES.ABOUT}
               render={() => <About />}
             />
-            <Route component={Error} /> */}
-          </Switch>
+            <Route component={Error} />
+          </Switch> */}
         </Box>
-      </Router>
+      // </Router>
     // </AppContext.Provider>
   );
 }
