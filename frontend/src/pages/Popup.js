@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 		textTransform: 'None',
 		padding: theme.spacing(1, 4),
 		border: '3px solid #484B70',
+		marginTop: '-5px'
 	}
 }));
 
@@ -51,7 +52,7 @@ const REC_SITES = [
 	}
 ];
 
-const CIRCLE_COLORS = [PASTEL_PINK,BABY_PINK,BABY_PINK, PASTEL_PINK]; 
+const CIRCLE_COLORS = [PASTEL_PINK,'#f0b0a8', BABY_PINK, '#F3C1B9']; 
 //const CIRCLE_COLORS = [PASTEL_PINK, DEEP_CHAMPAGNE, BABY_PINK, GOLD_CRAYOLA]; 
 
 const ALIGN_ARR = ['end', 'end', 'start', 'start']; 
@@ -126,6 +127,7 @@ function Popup() {
 			</Button>
 
 			<br /> 
+			<br /> 
 			
 			<div>			
 				<Grid container direction="row">
@@ -145,10 +147,12 @@ function Popup() {
 				</Grid>
 			</div>
 
-
+			<br />
+			<br />
+			
 			<Button onClick={redirectToHome} className={classes.button}>
 				<Typography variant="h6">
-					<b>More Details</b>
+					More Details
 				</Typography>
 			</Button>
             
