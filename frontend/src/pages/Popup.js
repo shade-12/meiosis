@@ -11,6 +11,7 @@ import Circle from '../components/Circle';
 
 // Constants import
 import { HOME } from '../constants/routes';
+import { BABY_PINK, DEEP_CHAMPAGNE, GOLD_CRAYOLA, PASTEL_PINK } from '../constants/colors';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 		textTransform: 'None',
 		padding: theme.spacing(1, 4),
 		border: '3px solid #484B70',
+		marginTop: '-5px'
 	}
 }));
 
@@ -49,6 +51,12 @@ const REC_SITES = [
 		"url": "https://www.bbcgoodfood.com/howto/guide/vegan-diet-better-environment#:~:text=Studies%20show%20that%20vegan%20diets,because%20they%20only%20ate%20fruit!"
 	}
 ];
+
+const CIRCLE_COLORS = [PASTEL_PINK,'#f0b0a8', BABY_PINK, '#F3C1B9']; 
+//const CIRCLE_COLORS = [PASTEL_PINK, DEEP_CHAMPAGNE, BABY_PINK, GOLD_CRAYOLA]; 
+
+const ALIGN_ARR = ['end', 'end', 'start', 'start']; 
+const JUSTIFY_ARR = ['end', 'start', 'end', 'start'];
 
 function Popup() {
 	const classes = useStyles();
@@ -119,23 +127,32 @@ function Popup() {
 			</Button>
 
 			<br /> 
+			<br /> 
 			
-			<Grid container direction="row" justify="center">
-				{REC_SITES.map((site, i) => {
-					return (
-						<Circle
-							key={i}
-							size={160}
-							title={site.title}
-							url={site.url}
-						/>
-					);
-				})}
-			</Grid>
+			<div>			
+				<Grid container direction="row">
+					{REC_SITES.map((site, i) => {
+						return (
+							<Circle
+								key={i}
+								color={CIRCLE_COLORS[i]}
+								size={160}
+								title={site.title}
+								url={site.url}
+								align={ALIGN_ARR[i]} 
+								justify={JUSTIFY_ARR[i]}
+							/>
+						);
+					})}
+				</Grid>
+			</div>
 
+			<br />
+			<br />
+			
 			<Button onClick={redirectToHome} className={classes.button}>
 				<Typography variant="h6">
-					<b>More Details</b>
+					More Details
 				</Typography>
 			</Button>
             

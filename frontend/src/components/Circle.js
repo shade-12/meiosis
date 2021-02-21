@@ -7,18 +7,16 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
-// Constants import
-import { LIGHT_PINK } from '../constants/colors';
-
-
 function Circle(props) {
-    const { size, fontSize, title, url } = props;
+    const { size, color, title, url, align, justify } = props;
     const useStyles = makeStyles(theme => ({
         circle: {
-            backgroundColor: LIGHT_PINK,
+            backgroundColor: color, 
             width: size,
             height: size,
             borderRadius: '50%',
+            alignSelf: align,
+            justifySelf: justify, 
         },
         link: {
             color: theme.palette.secondary.main
