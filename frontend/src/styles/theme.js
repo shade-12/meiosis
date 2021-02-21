@@ -6,38 +6,15 @@ import * as COLORS from '../constants/colors';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: COLORS.MAIN_BLUE,
-            contrastText: COLORS.MAIN_YELLOW,
+            main: COLORS.MAIN_GREEN,
+            contrastText: COLORS.MAIN_PURPLE,
         },
         secondary: {
-            main: COLORS.MAIN_YELLOW
+            main: COLORS.MAIN_PURPLE
         }
     },
     typography: {
         fontFamily: 'Roboto Condensed'
-    },
-    overrides: {
-        MuiSlider: {
-            rail: {
-                height: '1rem',
-                borderRadius: '10px'
-            },
-            track: {
-                height: '1rem',
-                borderRadius: '10px'
-            },
-            thumb: {
-                width: '2rem',
-                height: '2rem',
-                marginTop: '-10px',
-                marginLeft: '-15px'
-            }
-        },
-        MuiInputBase: {
-            input: {
-                color: COLORS.MAIN_YELLOW
-            }
-        }
     }
 });
 
