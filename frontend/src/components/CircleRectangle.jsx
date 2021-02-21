@@ -10,8 +10,11 @@ import Typography from '@material-ui/core/Typography';
 
 function CircleRectangle(props) {
   const {
-    size, color, title, url,
+    size, color, site,
   } = props;
+  const {
+    title, link, snippet,
+  } = site;
   const useStyles = makeStyles((theme) => ({
     circle: {
       backgroundColor: color,
@@ -51,7 +54,7 @@ function CircleRectangle(props) {
             justifyContent="center"
           >
             <Typography variant="body1" component="div" align="center" className={classes.text}>
-              <Link href={url} underline="always" target="_blank" className={classes.link}>
+              <Link href={link} underline="always" target="_blank" className={classes.link}>
                 {title.length > 70 ? `${title.substring(0, 70)}...` : title}
               </Link>
             </Typography>

@@ -131,37 +131,35 @@ function Options() {
 
         <br />
 
-        <Grid container direction="row" justify="center">
-          <form className={classes.form} noValidate autoComplete="off">
-            <TextField
-              value={inputURL}
-              onChange={handleChange}
-              InputProps={{
-                style: {
-                  fontSize: 20,
-                  padding: '0.5rem',
-                },
-              }}
-              className={classes.textfield}
-            />
-          </form>
+        <form className={classes.form} noValidate autoComplete="off">
+          <TextField
+            value={inputURL}
+            onChange={handleChange}
+            InputProps={{
+              style: {
+                fontSize: 20,
+                padding: '0.5rem',
+              },
+            }}
+            className={classes.textfield}
+          />
+        </form>
 
-          {showCit
-            ? (
-              <Typography variant="body1" align="center" paragraph>
-                {citation}
-              </Typography>
-            ) : (
-              <Button onClick={generateCitation} className={classes.buttonOutline}>
-                <Button className={classes.button}>
-                  <Typography variant="h6">
-                    Generate Citation
-                  </Typography>
-                </Button>
+        <br />
+        {showCit
+          ? (
+            <Typography variant="body1" align="center" paragraph>
+              {citation}
+            </Typography>
+          ) : (
+            <Button onClick={generateCitation} className={classes.buttonOutline}>
+              <Button className={classes.button}>
+                <Typography variant="h6">
+                  Generate Citation
+                </Typography>
               </Button>
-            )}
-
-        </Grid>
+            </Button>
+          )}
 
         <br />
         <br />
@@ -173,8 +171,7 @@ function Options() {
                 key={i}
                 color={CIRCLE_COLORS[i]}
                 size={180}
-                title={site.title}
-                url={site.link}
+                site={site}
               />
             ))}
           </Grid>
