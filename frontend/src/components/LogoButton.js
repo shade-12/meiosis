@@ -8,17 +8,21 @@ import { ReactComponent as MeiosisLogo } from '../assets/meiosis-logo.svg';
 
 // Constants import
 import { HOME } from '../constants/routes';
+import { WHITE,  MAIN_PURPLE} from '../constants/colors';
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        color: theme.palette.secondary.main,
+        color: WHITE,
         textDecoration: 'none',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: theme.spacing(3, 0, 1, 0)
+        padding: theme.spacing(2, 0, 1, 0),
+        width: '100vw',
+        height: '90px',
+        backgroundColor: MAIN_PURPLE
     },
     logo: {
         width: '4rem',

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // Style components import
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -7,6 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Circle from '../components/Circle';
+
+// Constants import
+import { HOME } from '../constants/routes';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,11 +24,10 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
 	button: {
-		color: 'white',
+		color: theme.palette.secondary.main,
 		textTransform: 'None',
 		padding: theme.spacing(1, 4),
-		borderRadius: '8px',
-		backgroundColor: theme.palette.secondary.main
+		border: '3px solid #484B70',
 	}
 }));
 
@@ -50,15 +53,38 @@ const REC_SITES = [
 function Popup() {
 	const classes = useStyles();
 	const [inputURL, setInputURL] = useState("");
+	const [redirect, setRedirect] = useState(false);
+
+	// useEffect(() => {
+    //     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    //         const currentURL = tabs[0].url;
+    //         console.log(currentURL);
+    //         setInputURL(currentURL);
+    //     });
+    // });
 
 	const handleChange = (event) => setInputURL(event.target.value);
+
+	const startMeiosis = () => {
+		// pass inputURL to backend
+	};
+
+	const generateCitation = () => {
+
+	};
+
+	const redirectToHome = () => setRedirect(true);
+
+	if (redirect)
+        return <Redirect to={HOME} />
 
 	return (
 		<React.Fragment>
 
-            <Button className={classes.button}>
+			<br /> 
+            <Button onClick={startMeiosis} className={classes.button}>
 				<Typography variant="h6">
-				<b>Start Meiosis</b>
+					Start Meiosis
 				</Typography>
 			</Button>
 
@@ -86,18 +112,19 @@ function Popup() {
 			
 			<br /> 
 
-			<Button className={classes.button}>
+			<Button onClick={generateCitation} className={classes.button}>
 				<Typography variant="h6">
-					<b>Generate Citation</b>
+					Generate Citation
 				</Typography>
 			</Button>
 
 			<br /> 
 			
 			<Grid container direction="row" justify="center">
-				{REC_SITES.map(site => {
+				{REC_SITES.map((site, i) => {
 					return (
 						<Circle
+							key={i}
 							size={160}
 							title={site.title}
 							url={site.url}
@@ -106,7 +133,7 @@ function Popup() {
 				})}
 			</Grid>
 
-			<Button className={classes.button}>
+			<Button onClick={redirectToHome} className={classes.button}>
 				<Typography variant="h6">
 					<b>More Details</b>
 				</Typography>
