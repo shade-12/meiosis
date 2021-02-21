@@ -1,24 +1,16 @@
 {
   "manifest_version": 2,
   "name": "Meiosis",
-  "description": "A similar websites recommendation browser extension that makes your research experience abcelllutely ctellar.",
+  "description": "A chrome browser extension that provides recommendations for similar sites to conduct further research, making your research experience abcelllutely ctellar. Meiosis also provides tools to identify conflicting information presented by different sites and to automatically generate citations for the sites you visit.",
   "version": "1.0.0",
-  "browser_action": {},
+  "browser_action": {
+    "default_popup": "index.html"
+  },
   "icons": {
     "16": "logo-small.png",
     "48": "logo-small.png",
     "128": "logo-small.png"
   },
   "content_security_policy": "script-src 'self' 'sha256-x0xm9ANa8afi65HzG3scXXrfDr09qKLV+PndGjCzDK8='; object-src 'self'",
-  "permissions": ["tabs"],
-  "content_scripts" : [
-    {
-      "matches": [ "<all_urls>" ],
-      "css": ["/static/css/index.css", "/static/css/content.css"],
-      "js": ["/static/js/content.js"]
-    }
-  ],
-  "web_accessible_resources":[
-      "/static/css/content.css"
-  ]
+  "permissions": ["tabs"]
 }

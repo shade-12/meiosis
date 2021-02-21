@@ -27,7 +27,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    // overflowY: 'scroll',
+    overflowX: 'hidden'
 	},
   headline: {
     textTransform: 'uppercase',
@@ -59,26 +61,28 @@ function App() {
           </Typography>
 
           <br />
+
+          <Popup />
           
           {/* Main pages: route-based rendering */}
-          <Switch>
-            {/* <Route
+          {/* <Switch>
+            <Route
               exact
               path={ROUTES.HOME}
               render={() => <Home />}
-            /> */}
+            />
             <Route
               exact
               path={ROUTES.POPUP}
               render={() => <Popup />}
             />
-            {/* <Route
+            <Route
               exact
               path={ROUTES.ABOUT}
               render={() => <About />}
             />
-            <Route component={Error} /> */}
-          </Switch>
+            <Route component={Error} />
+          </Switch> */}
         </Box>
       </Router>
     // </AppContext.Provider>
