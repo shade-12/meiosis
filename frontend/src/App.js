@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+// React components import
+import makeStyles from '@material-ui/styles/makeStyles';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import LogoButton from './components/LogoButton';
+import Popup from './pages/Popup';
+
+
+const useStyles = makeStyles(theme => ({
+	box: {
+    maxWidth: '100%',
+    margin: '0 2rem 2rem 2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    // color: theme.palette.secondary.main
+	},
+  headline: {
+    textTransform: 'uppercase',
+    marginTop: '15px',
+  },
+  button: {
+		color: 'white',
+		textTransform: 'None',
+    // padding: theme.spacing(1, 4),
+    borderRadius: '8px',
+    // backgroundColor: theme.palette.secondary.main
+	}
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.box}>
+      {/* Logo */}
+      <LogoButton />
+
+      {/* Headline */}
+      <Typography variant="h6" align="center" className={classes.headline}>
+        <b>Making your research experience ab<i>cell</i>utely <i>c</i>t<i>ell</i>ar.</b>
+      </Typography>
+
+      <br />
+
+      <Popup />
     </div>
   );
 }
