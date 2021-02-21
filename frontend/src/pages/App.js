@@ -50,7 +50,7 @@ function App() {
 
   return (
     // <AppContext.Provider value={appData}>
-      <Router>
+      // <Router>
         <Box className={classes.box}>
           {/* Navigation bar */}
           <LogoButton />
@@ -84,7 +84,7 @@ function App() {
             <Route component={Error} />
           </Switch> */}
         </Box>
-      </Router>
+      // </Router>
     // </AppContext.Provider>
   );
 }

@@ -34,7 +34,7 @@ function LogoButton() {
     const classes = useStyles();
 
     return (
-        <Link to={HOME} className={classes.root}>
+        <div className={classes.root}>
             {/* Logo Image */}
             <MeiosisLogo className={classes.logo} />
 
@@ -43,7 +43,7 @@ function LogoButton() {
 
             {/* Logo Text */}
             <Typography variant="h2"><b>Meiosis</b></Typography>
-        </Link>
+        </div>
     );
 }
 
