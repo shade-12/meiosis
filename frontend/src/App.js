@@ -36,6 +36,7 @@ function App() {
 
   return (
     <div className={classes.box}>
+      Hello world
       {/* Logo */}
       <LogoButton />
 
