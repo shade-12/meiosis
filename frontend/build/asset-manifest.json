@@ -1,33 +1,33 @@
 {
   "files": {
     "static/css/0.47271137.chunk.css": "/static/css/0.47271137.chunk.css",
-    "static/js/0.165ef4fb.chunk.js": "/static/js/0.165ef4fb.chunk.js",
-    "background.js": "/static/js/background.9e85f41e.chunk.js",
-    "index.js": "/static/js/index.647c054f.chunk.js",
-    "popup.js": "/static/js/popup.7eb2d9e0.chunk.js",
+    "static/js/0.65156fc2.chunk.js": "/static/js/0.65156fc2.chunk.js",
+    "background.js": "/static/js/background.8d5dff8b.chunk.js",
+    "index.js": "/static/js/index.51122474.chunk.js",
+    "popup.js": "/static/js/popup.51820182.chunk.js",
     "runtime-background.js": "/static/js/runtime-background.2d43ec98.js",
     "runtime-index.js": "/static/js/runtime-index.d95a45dd.js",
     "runtime-popup.js": "/static/js/runtime-popup.948d7c78.js",
     "background.html": "/background.html",
     "index.html": "/index.html",
     "popup.html": "/popup.html",
-    "precache-manifest.5723f5498100967cb071a1be84595375.js": "/precache-manifest.5723f5498100967cb071a1be84595375.js",
+    "precache-manifest.170f5f5c4878abf860cee58e75486285.js": "/precache-manifest.170f5f5c4878abf860cee58e75486285.js",
     "service-worker.js": "/service-worker.js",
     "static/css/0.47271137.chunk.css.map": "/static/css/0.47271137.chunk.css.map",
-    "static/js/0.165ef4fb.chunk.js.LICENSE.txt": "/static/js/0.165ef4fb.chunk.js.LICENSE.txt",
+    "static/js/0.65156fc2.chunk.js.LICENSE.txt": "/static/js/0.65156fc2.chunk.js.LICENSE.txt",
     "static/media/meiosis-logo.6728a9eb.svg": "/static/media/meiosis-logo.6728a9eb.svg",
     "static/media/index.css": "/static/media/roboto-latin-900italic.ebf6d164.woff2"
   },
   "entrypoints": [
     "static/js/runtime-index.d95a45dd.js",
     "static/css/0.47271137.chunk.css",
-    "static/js/0.165ef4fb.chunk.js",
-    "static/js/index.647c054f.chunk.js",
+    "static/js/0.65156fc2.chunk.js",
+    "static/js/index.51122474.chunk.js",
     "static/js/runtime-popup.948d7c78.js",
     "static/css/0.47271137.chunk.css",
-    "static/js/0.165ef4fb.chunk.js",
-    "static/js/popup.7eb2d9e0.chunk.js",
+    "static/js/0.65156fc2.chunk.js",
+    "static/js/popup.51820182.chunk.js",
     "static/js/runtime-background.2d43ec98.js",
-    "static/js/background.9e85f41e.chunk.js"
+    "static/js/background.8d5dff8b.chunk.js"
   ]
 }
