@@ -6,7 +6,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import LogoButton from '../components/LogoButton';
-// import Home from './Home';
+import Home from './Home';
 import Popup from './Popup';
 // import About from './About';
 // import Error from './Error';
@@ -62,16 +62,16 @@ function App() {
           
           {/* Main pages: route-based rendering */}
           <Switch>
-            {/* <Route
+            <Route
               exact
               path={ROUTES.HOME}
               render={() => <Home />}
-            /> */}
-            <Route
+            />
+            {/*<Route
               exact
               path={ROUTES.POPUP}
               render={() => <Popup />}
-            />
+            />*/}
             {/* <Route
               exact
               path={ROUTES.ABOUT}
