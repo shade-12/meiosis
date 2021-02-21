@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import LogoButton from './components/LogoButton';
 import Popup from './pages/Popup';
+import './App.css';
 
 
 const useStyles = makeStyles(theme => ({
