@@ -6,11 +6,13 @@ import React, { useState } from 'react';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import CircleRectangle from '../components/CircleRectangle';
+import ContentLabel from '../components/ContentLabel';
 import LogoButton from '../components/LogoButton';
 
 // Constants import
@@ -42,6 +44,11 @@ const useStyles = makeStyles(() => ({
     color: theme.palette.secondary.main,
     backgroundColor: 'white',
     width: '100%',
+  },
+  chipContainer: {
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
   },
   button: {
     color: 'white',
@@ -86,9 +93,6 @@ const REC_SITES = [
 ];
 
 const CIRCLE_COLORS = [PASTEL_PINK, DEEP_CHAMPAGNE, BABY_PINK, GOLD_CRAYOLA];
-
-const ALIGN_ARR = ['end', 'end', 'start', 'start'];
-const JUSTIFY_ARR = ['end', 'start', 'end', 'start'];
 
 function Options(props:any) {
   const classes = useStyles();
@@ -190,6 +194,10 @@ function Options(props:any) {
           <Typography variant="h4" paragraph>
             <b>Keywords</b>
           </Typography>
+
+          <Grid item container className={classes.chipContainer}>
+            {['Vegan', 'Environment', 'Greenhouse Gas', 'Animal', 'Footprint', 'Carbon Diet'].map((kw, i) => <Chip key={i} label={<Typography variant="body1">{kw}</Typography>} style={{ backgroundColor: 'white' }} />)}
+          </Grid>
         </Grid>
 
         <br />
@@ -203,6 +211,31 @@ function Options(props:any) {
             the content of input website to provide  information about the content
             similarity between a recommended site content and the input website content.
           </Typography>
+
+          <Grid item container direction="row" alignItems="center">
+            <ContentLabel isOpposite />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <Typography variant="h6">
+              Conflicting content found in the recommnded website content.
+            </Typography>
+          </Grid>
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <Grid item container direction="row" alignItems="center">
+            <ContentLabel />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <Typography variant="h6">
+              No conflicting content found in the recommnded website content.
+            </Typography>
+          </Grid>
         </Grid>
 
         <br />
