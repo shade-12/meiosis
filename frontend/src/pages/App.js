@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary.main
 	},
   headline: {
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    marginTop: '15px',
   },
   button: {
 		color: 'white',
