@@ -16,8 +16,9 @@ const fetchSites = (inputURL) => new Promise((resolve, reject) => {
   axios
     .post(SERVER_ENDPOINT, { url: inputURL }, { timeout: 300000 })
     .then((res) => {
+      console.log(res.data);
       // Check status code: Only status code 200 from server indicates a valid result
-      if (res.status !== 200) resolve(TEST_RESPONSE);
+      if (res.status !== 200 || !('sites' in res.data.body) || !('keywords' in res.data.body) || !('citation' in res.data.body)) resolve(TEST_RESPONSE);
       else resolve(res.data.body);
     })
     .catch((err) => resolve(TEST_RESPONSE));

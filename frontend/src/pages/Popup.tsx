@@ -61,6 +61,7 @@ function Popup() {
   const [sites, setSites] = useState<any[]>([]);
   const [keywords, setKeywords] = useState<any[]>([]);
   const [showCit, setShowCit] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
@@ -74,11 +75,13 @@ function Popup() {
   };
 
   const startMeiosis = () => {
+    setLoading(true);
     fetchSites(inputURL).then((res) => {
       console.log(res);
       setCitation(res.citation);
-      setSites(res.body.sites);
+      setSites(res.sites);
       setKeywords(res.keywords);
+      setLoading(false);
     });
   };
 
@@ -132,78 +135,87 @@ function Popup() {
 
         <br />
 
-        {
-        keywords.length > 0
-        && (
-        <>
-          <Typography variant="h6" align="center">
-            The following websites discuss similar topics as your current one:
-          </Typography>
-
-          <br />
-
-          <form className={classes.form} noValidate autoComplete="off">
-            <TextField
-              value={inputURL}
-              onChange={handleChange}
-              InputProps={{
-                style: {
-                  fontSize: 20,
-                  padding: '0.5rem',
-                },
-              }}
-              className={classes.textfield}
-            />
-          </form>
-
-          <br />
-          {showCit
-            ? (
-              <Typography variant="body1" align="center" paragraph>
-                {citation}
+        {loading
+          ? (
+            <Typography variant="h4" align="center" paragraph>
+              Loading ...
+            </Typography>
+          ) : (
+            <>
+              {
+            keywords.length > 0
+            && (
+            <>
+              <Typography variant="h6" align="center">
+                The following websites discuss similar topics as your current one:
               </Typography>
-            ) : (
-              <Button onClick={generateCitation} className={classes.buttonOutline}>
+
+              <br />
+
+              <form className={classes.form} noValidate autoComplete="off">
+                <TextField
+                  value={inputURL}
+                  onChange={handleChange}
+                  InputProps={{
+                    style: {
+                      fontSize: 20,
+                      padding: '0.5rem',
+                    },
+                  }}
+                  className={classes.textfield}
+                />
+              </form>
+
+              <br />
+              {showCit
+                ? (
+                  <Typography variant="body1" align="center" paragraph>
+                    {citation}
+                  </Typography>
+                ) : (
+                  <Button onClick={generateCitation} className={classes.buttonOutline}>
+                    <Button className={classes.button}>
+                      <Typography variant="h6">
+                        Generate Citation
+                      </Typography>
+                    </Button>
+                  </Button>
+                )}
+
+              <br />
+              <br />
+
+              <div>
+                <Grid container direction="row">
+                  {sites.map((site, i) => (
+                    <Circle
+                      key={i}
+                      color={CIRCLE_COLORS[i]}
+                      size={160}
+                      title={site.title}
+                      url={site.link}
+                      align={ALIGN_ARR[i]}
+                      justify={JUSTIFY_ARR[i]}
+                    />
+                  ))}
+                </Grid>
+              </div>
+
+              <br />
+              <br />
+
+              <Button onClick={redirectToHome} className={classes.buttonOutline}>
                 <Button className={classes.button}>
                   <Typography variant="h6">
-                    Generate Citation
+                    More Details
                   </Typography>
                 </Button>
               </Button>
-            )}
-
-          <br />
-          <br />
-
-          <div>
-            <Grid container direction="row">
-              {sites.map((site, i) => (
-                <Circle
-                  key={i}
-                  color={CIRCLE_COLORS[i]}
-                  size={160}
-                  title={site.title}
-                  url={site.link}
-                  align={ALIGN_ARR[i]}
-                  justify={JUSTIFY_ARR[i]}
-                />
-              ))}
-            </Grid>
-          </div>
-
-          <br />
-          <br />
-
-          <Button onClick={redirectToHome} className={classes.buttonOutline}>
-            <Button className={classes.button}>
-              <Typography variant="h6">
-                More Details
-              </Typography>
-            </Button>
-          </Button>
-        </>
-        )
-        }
+            </>
+            )
+          }
+            </>
+          )}
 
       </Box>
     </ThemeProvider>

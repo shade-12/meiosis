@@ -27,7 +27,7 @@ const TEST_RESPONSE = {
         title: 'Is a vegan diet better for the environment? - BBC Good Food',
         link: 'https://www.bbcgoodfood.com/howto/guide/vegan-diet-better-environment',
         snippet: 'Why is a vegan diet better for the planet? One answer is the huge environmental cost of industrialised animal farming. Today, the UN says meat and dairy (farmed ...',
-        is_opposite: false,
+        is_opposite: true,
         description: 'Environmental editor Paul Allen asks if being vegan is best for the planet – and what a sustainable diet might look like in future.',
         citation_apa6: 'Is a vegan diet better for the environment? - BBC Good Food. Retrieved February 21, 2021, from https://www.bbcgoodfood.com/howto/guide/vegan-diet-better-environment',
       },

@@ -82,17 +82,20 @@ function Options() {
   const [sites, setSites] = useState<any>(JSON.parse(localStorage.getItem('sites') || '[]'));
   const [keywords, setKeywords] = useState<any>(JSON.parse(localStorage.getItem('keywords') || '[]'));
   const [showCit, setShowCit] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setInputURL(event.target.value);
   };
 
   const startMeiosis = () => {
+    setLoading(true);
     fetchSites(inputURL).then((res) => {
       console.log(res);
       setCitation(res.citation);
-      setSites(res.body.sites);
+      setSites(res.sites);
       setKeywords(res.keywords);
+      setLoading(false);
     });
   };
 
@@ -125,122 +128,131 @@ function Options() {
 
         <br />
 
-        <Typography variant="h6" align="center">
-          The following websites discuss similar topics as your current one:
-        </Typography>
-
-        <br />
-
-        <form className={classes.form} noValidate autoComplete="off">
-          <TextField
-            value={inputURL}
-            onChange={handleChange}
-            InputProps={{
-              style: {
-                fontSize: 20,
-                padding: '0.5rem',
-              },
-            }}
-            className={classes.textfield}
-          />
-        </form>
-
-        <br />
-        {showCit
+        {loading
           ? (
-            <Typography variant="body1" align="center" paragraph>
-              {citation}
+            <Typography variant="h4" align="center" paragraph>
+              Loading ...
             </Typography>
           ) : (
-            <Button onClick={generateCitation} className={classes.buttonOutline}>
-              <Button className={classes.button}>
-                <Typography variant="h6">
-                  Generate Citation
+            <>
+              <Typography variant="h6" align="center">
+                The following websites discuss similar topics as your current one:
+              </Typography>
+
+              <br />
+
+              <form className={classes.form} noValidate autoComplete="off">
+                <TextField
+                  value={inputURL}
+                  onChange={handleChange}
+                  InputProps={{
+                    style: {
+                      fontSize: 20,
+                      padding: '0.5rem',
+                    },
+                  }}
+                  className={classes.textfield}
+                />
+              </form>
+
+              <br />
+              {showCit
+                ? (
+                  <Typography variant="body1" align="center" paragraph>
+                    {citation}
+                  </Typography>
+                ) : (
+                  <Button onClick={generateCitation} className={classes.buttonOutline}>
+                    <Button className={classes.button}>
+                      <Typography variant="h6">
+                        Generate Citation
+                      </Typography>
+                    </Button>
+                  </Button>
+                )}
+
+              <br />
+              <br />
+
+              <div>
+                <Grid container direction="row" spacing={10}>
+                  {sites.map((site: { title: any; link: any; }, i: number) => (
+                    <CircleRectangle
+                      key={i}
+                      color={CIRCLE_COLORS[i]}
+                      size={180}
+                      site={site}
+                    />
+                  ))}
+                </Grid>
+              </div>
+
+              <br />
+              <br />
+
+              <Grid container style={{ width: '55vw' }}>
+                <Typography variant="h4" paragraph>
+                  <b>Keywords</b>
                 </Typography>
+
+                <Grid item container className={classes.chipContainer}>
+                  {keywords.map((kw: React.ReactNode, i: number) => <Chip key={i} label={<Typography variant="body1">{kw}</Typography>} style={{ backgroundColor: 'white' }} />)}
+                </Grid>
+              </Grid>
+
+              <br />
+              <br />
+
+              <Grid container style={{ width: '55vw' }}>
+                <Typography variant="h4" paragraph>
+                  <b>Guide</b>
+                </Typography>
+                <Typography variant="h6">
+                  The content of each recommended site is analyzed and compared with
+                  the content of input website to provide  information about the content
+                  similarity between a recommended site content and the input website content.
+                </Typography>
+
+                <Grid item container direction="row" alignItems="center">
+                  <ContentLabel isOpposite />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <Typography variant="h6">
+                    Conflicting content found in the recommnded website content.
+                  </Typography>
+                </Grid>
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <Grid item container direction="row" alignItems="center">
+                  <ContentLabel />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <Typography variant="h6">
+                    No conflicting content found in the recommnded website content.
+                  </Typography>
+                </Grid>
+              </Grid>
+
+              <br />
+              <br />
+              <br />
+              <br />
+
+              <Button onClick={startMeiosis} className={classes.buttonOutline}>
+                <Button className={classes.button}>
+                  <Typography variant="h6">
+                    Undergo Meiosis Again
+                  </Typography>
+                </Button>
               </Button>
-            </Button>
+            </>
           )}
-
-        <br />
-        <br />
-
-        <div>
-          <Grid container direction="row" spacing={10}>
-            {sites.map((site: { title: any; link: any; }, i: number) => (
-              <CircleRectangle
-                key={i}
-                color={CIRCLE_COLORS[i]}
-                size={180}
-                site={site}
-              />
-            ))}
-          </Grid>
-        </div>
-
-        <br />
-        <br />
-
-        <Grid container style={{ width: '55vw' }}>
-          <Typography variant="h4" paragraph>
-            <b>Keywords</b>
-          </Typography>
-
-          <Grid item container className={classes.chipContainer}>
-            {keywords.map((kw: React.ReactNode, i: number) => <Chip key={i} label={<Typography variant="body1">{kw}</Typography>} style={{ backgroundColor: 'white' }} />)}
-          </Grid>
-        </Grid>
-
-        <br />
-        <br />
-
-        <Grid container style={{ width: '55vw' }}>
-          <Typography variant="h4" paragraph>
-            <b>Guide</b>
-          </Typography>
-          <Typography variant="h6">
-            The content of each recommended site is analyzed and compared with
-            the content of input website to provide  information about the content
-            similarity between a recommended site content and the input website content.
-          </Typography>
-
-          <Grid item container direction="row" alignItems="center">
-            <ContentLabel isOpposite />
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <Typography variant="h6">
-              Conflicting content found in the recommnded website content.
-            </Typography>
-          </Grid>
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-
-          <Grid item container direction="row" alignItems="center">
-            <ContentLabel />
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <Typography variant="h6">
-              No conflicting content found in the recommnded website content.
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <Button onClick={startMeiosis} className={classes.buttonOutline}>
-          <Button className={classes.button}>
-            <Typography variant="h6">
-              Undergo Meiosis Again
-            </Typography>
-          </Button>
-        </Button>
 
       </Box>
     </ThemeProvider>

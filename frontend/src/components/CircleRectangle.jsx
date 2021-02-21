@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import ContentLabel from './ContentLabel';
 
 function CircleRectangle(props) {
   const {
@@ -36,6 +37,13 @@ function CircleRectangle(props) {
       backgroundColor: '#ADC2B4',
       borderRadius: '15px',
     },
+    labelBox: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: theme.spacing(0, 2, 0, 2),
+    },
   }));
   const classes = useStyles();
 
@@ -44,14 +52,14 @@ function CircleRectangle(props) {
       <Box position="relative" display="inline-flex">
         <div className={classes.rectangle}>
           <Box className={classes.circle} />
+
+          {/* Title */}
           <Box
             top={0}
             left={0}
             bottom={0}
             right={0}
             position="absolute"
-            alignItems="center"
-            justifyContent="center"
           >
             <Typography variant="body1" component="div" align="center" className={classes.text}>
               <Link href={link} underline="always" target="_blank" className={classes.link}>
@@ -59,6 +67,24 @@ function CircleRectangle(props) {
               </Link>
             </Typography>
           </Box>
+
+          <br />
+          {/* Content Label */}
+          <Box
+            className={classes.labelBox}
+          >
+            <ContentLabel isOpposite={site.is_opposite} />
+          </Box>
+
+          <br />
+          <Box
+            className={classes.labelBox}
+          >
+            <Typography variant="body1">
+              {snippet.length > 125 ? `${snippet.substring(0, 125)}...` : snippet}
+            </Typography>
+          </Box>
+
         </div>
       </Box>
     </Grid>
