@@ -37,18 +37,17 @@ function App() {
 
   return (
     <div className={classes.box}>
-      Hello world
       {/* Logo */}
-      <LogoButton />
+      {/* <LogoButton /> */}
 
       {/* Headline */}
-      <Typography variant="h6" align="center" className={classes.headline}>
+      <p className={classes.headline}>
         <b>Making your research experience ab<i>cell</i>utely <i>c</i>t<i>ell</i>ar.</b>
-      </Typography>
+      </p>
 
       <br />
 
-      <Popup />
+      {/* <Popup /> */}
     </div>
   );
 }
