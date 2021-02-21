@@ -15,6 +15,16 @@ const theme = createMuiTheme({
     },
     typography: {
         fontFamily: 'Roboto Condensed'
+    },
+    overrides:{
+       MuiGrid: {
+            item: {
+                margin: '-10px'
+            }, 
+            container: {
+                marginLeft: '20px'
+            }
+       } 
     }
 });
 
