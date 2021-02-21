@@ -132,6 +132,8 @@ function Home() {
 
 				<br /> 
 				<br /> 
+				<br />
+				{/* <br /> 
 				<br /> 
 				<br /> 
 				<br /> 
@@ -140,8 +142,7 @@ function Home() {
 				<br /> 
 				<br /> 
 				<br /> 
-				<br /> 
-				<br /> 
+				<br />  */}
 				
 				<Grid container direction="row">
 					{REC_SITES.map((site, i) => {
@@ -156,7 +157,21 @@ function Home() {
 						);
 					})}
 				</Grid>
+
+				<br />
 	
+				<div style={{width: '100vw', marginLeft: '20px'}}>
+					<Typography variant="h5" align="left"> 
+						Keywords
+					</Typography>
+
+					<br />
+
+					<Typography variant="h5" align="left"> 
+						Guide
+					</Typography>
+				</div>
+
 				<br />
 				<br />
 				<Button onClick={startMeiosis} className={classes.buttonOutline}>

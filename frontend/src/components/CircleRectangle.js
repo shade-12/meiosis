@@ -22,14 +22,13 @@ function Circle(props) {
             color: theme.palette.secondary.main
         },
         text: {
-            padding: '20px', 
+            padding: '38px', 
         },
         rectangle: {
             height: (size*2.5),
             width: (size*1.2),
             backgroundColor: '#ADC2B4',
             borderRadius: '15px'
-            //opacity: '0.5'
         }
     }));    
     const classes = useStyles();
@@ -49,7 +48,7 @@ function Circle(props) {
                             alignItems="center"
                             justifyContent="center"
                         >
-                        <Typography variant="body2" component="div" align="center" className={classes.text}>
+                        <Typography variant="body1" component="div" align="center" className={classes.text}>
                             <Link href={url} underline="always" target="_blank" className={classes.link}>
                                 {title.length > 70 ? title.substring(0, 70) + '...' : title}
                             </Link>
