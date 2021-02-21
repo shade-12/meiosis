@@ -15,7 +15,7 @@
     {
       "matches": [ "<all_urls>" ],
       "css": ["/static/css/styles/index.css", "/static/css/content.css"],
-      "js": ["/static/js/0.chunk.js", "/static/js/index.js"]
+      "js": ["/static/js/index.js"]
     }
   ],
   "web_accessible_resources":[
