@@ -4,8 +4,7 @@ from typing import Set, List, Tuple
 from backend.parse_site_keywords import parse_site_keywords
 
 SERP_API_URL = 'https://serpapi.com/search'
-# SERP_API_KEY = os.environ['SERP_API_KEY']
-SERP_API_KEY = '95ba77e0c305ed8f2e4bec27de1445f02e36ad3693c32e15d6e95ee5f33cbd1b'
+SERP_API_KEY = os.environ['SERP_API_KEY']
 RET_SITES_COUNT = 3
 
 
