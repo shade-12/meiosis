@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: theme.spacing(3, 0, 3, 0)
+        padding: theme.spacing(3, 0, 1, 0)
     },
     logo: {
         width: '4rem',
@@ -38,7 +38,7 @@ function LogoButton() {
             &nbsp;&nbsp;
 
             {/* Logo Text */}
-            <Typography variant="h4"><b>Meiosis</b></Typography>
+            <Typography variant="h2"><b>Meiosis</b></Typography>
         </Link>
     );
 }

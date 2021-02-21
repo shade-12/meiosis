@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // React components import
 import makeStyles from '@material-ui/styles/makeStyles';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import LogoButton from '../components/LogoButton';
 // import Home from './Home';
 import Popup from './Popup';
@@ -19,12 +20,26 @@ import * as ROUTES from '../constants/routes';
 import { Typography } from '@material-ui/core';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
 	box: {
     maxWidth: '100%',
-    margin: '0 2rem 2rem 2rem'
+    margin: '0 2rem 2rem 2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    color: theme.palette.secondary.main
+	},
+  headline: {
+    textTransform: 'uppercase'
+  },
+  button: {
+		color: 'white',
+		textTransform: 'None',
+    padding: theme.spacing(1, 4),
+    borderRadius: '8px',
+    backgroundColor: theme.palette.secondary.main
 	}
-});
+}));
 
 function App() {
   const classes = useStyles();
@@ -33,16 +48,18 @@ function App() {
   return (
     // <AppContext.Provider value={appData}>
       <Router>
-        {/* Navigation bar */}
-        <LogoButton />
-
-        {/* Headline */}
-        <Typography variant="h6" align="center">
-          <b>Making your research experience ab<i>cell</i>utely <i>c</i>t<i>ell</i>ar.</b>
-        </Typography>
-
-        {/* Main pages: route-based rendering */}
         <Box className={classes.box}>
+          {/* Navigation bar */}
+          <LogoButton />
+
+          {/* Headline */}
+          <Typography variant="h6" align="center" className={classes.headline}>
+            <b>Making your research experience ab<i>cell</i>utely <i>c</i>t<i>ell</i>ar.</b>
+          </Typography>
+
+          <br />
+          
+          {/* Main pages: route-based rendering */}
           <Switch>
             {/* <Route
               exact
