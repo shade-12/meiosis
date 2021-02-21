@@ -73,44 +73,30 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const REC_SITES = [
-  {
-    title: 'Why the vegan diet is not always green',
-    url: 'https://www.bbc.com/future/article/20200211-why-the-vegan-diet-is-not-always-green',
-  },
-  {
-    title: 'VEGANISM IS ‘SINGLE BIGGEST WAY’ TO REDUCE OUR ENVIRONMENTAL IMPACT, STUDY FINDS',
-    url: 'https://www.independent.co.uk/life-style/health-and-families/veganism-environmental-impact-planet-reduced-plant-based-diet-humans-study-a8378631.html',
-  },
-  {
-    title: 'Why Going Vegan Is One of the Best Things You Can Do for the Environment',
-    url: 'https://www.forksoverknives.com/wellness/vegan-diet-helps-environmental-sustainability/',
-  },
-  {
-    title: 'Is a vegan diet better for the environment?',
-    url: 'https://www.bbcgoodfood.com/howto/guide/vegan-diet-better-environment#:~:text=Studies%20show%20that%20vegan%20diets,because%20they%20only%20ate%20fruit!',
-  },
-];
-
 const CIRCLE_COLORS = [PASTEL_PINK, DEEP_CHAMPAGNE, BABY_PINK, GOLD_CRAYOLA];
 
-function Options(props:any) {
+function Options() {
   const classes = useStyles();
-  const [inputURL, setInputURL] = useState(props.inputURL);
-  const [results, setResults] = useState(props.results);
+  const [inputURL, setInputURL] = useState<any>(localStorage.getItem('inputURL'));
+  const [citation, setCitation] = useState<any>(localStorage.getItem('citation'));
+  const [sites, setSites] = useState<any>(JSON.parse(localStorage.getItem('sites') || '[]'));
+  const [keywords, setKeywords] = useState<any>(JSON.parse(localStorage.getItem('keywords') || '[]'));
+  const [showCit, setShowCit] = useState(false);
 
   const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setInputURL(event.target.value);
   };
 
   const startMeiosis = () => {
-    fetchSites(props.inputURL).then((res) => {
+    fetchSites(inputURL).then((res) => {
       console.log(res);
-      // Save result array to 'results' state
+      setCitation(res.citation);
+      setSites(res.body.sites);
+      setKeywords(res.keywords);
     });
   };
 
-  const generateCitation = () => {};
+  const generateCitation = () => setShowCit(true);
 
   return (
     <ThemeProvider theme={theme}>
@@ -148,7 +134,7 @@ function Options(props:any) {
         <Grid container direction="row" justify="center">
           <form className={classes.form} noValidate autoComplete="off">
             <TextField
-              value={props.inputURL}
+              value={inputURL}
               onChange={handleChange}
               InputProps={{
                 style: {
@@ -160,13 +146,20 @@ function Options(props:any) {
             />
           </form>
 
-          <Button onClick={generateCitation} className={classes.buttonOutline}>
-            <Button className={classes.button}>
-              <Typography variant="h6">
-                Generate Citation
+          {showCit
+            ? (
+              <Typography variant="body1" align="center" paragraph>
+                {citation}
               </Typography>
-            </Button>
-          </Button>
+            ) : (
+              <Button onClick={generateCitation} className={classes.buttonOutline}>
+                <Button className={classes.button}>
+                  <Typography variant="h6">
+                    Generate Citation
+                  </Typography>
+                </Button>
+              </Button>
+            )}
 
         </Grid>
 
@@ -175,13 +168,13 @@ function Options(props:any) {
 
         <div>
           <Grid container direction="row" spacing={10}>
-            {REC_SITES.map((site, i) => (
+            {sites.map((site: { title: any; link: any; }, i: number) => (
               <CircleRectangle
                 key={i}
                 color={CIRCLE_COLORS[i]}
                 size={180}
                 title={site.title}
-                url={site.url}
+                url={site.link}
               />
             ))}
           </Grid>
@@ -196,10 +189,11 @@ function Options(props:any) {
           </Typography>
 
           <Grid item container className={classes.chipContainer}>
-            {['Vegan', 'Environment', 'Greenhouse Gas', 'Animal', 'Footprint', 'Carbon Diet'].map((kw, i) => <Chip key={i} label={<Typography variant="body1">{kw}</Typography>} style={{ backgroundColor: 'white' }} />)}
+            {keywords.map((kw: React.ReactNode, i: number) => <Chip key={i} label={<Typography variant="body1">{kw}</Typography>} style={{ backgroundColor: 'white' }} />)}
           </Grid>
         </Grid>
 
+        <br />
         <br />
 
         <Grid container style={{ width: '55vw' }}>

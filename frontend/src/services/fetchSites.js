@@ -1,5 +1,6 @@
 /* eslint-disable prefer-promise-reject-errors */
 import axios from 'axios';
+import TEST_RESPONSE from '../constants/response';
 
 const SERVER_ENDPOINT = 'https://d9jzeney19.execute-api.ca-central-1.amazonaws.com/default/';
 
@@ -16,10 +17,10 @@ const fetchSites = (inputURL) => new Promise((resolve, reject) => {
     .post(SERVER_ENDPOINT, { url: inputURL }, { timeout: 300000 })
     .then((res) => {
       // Check status code: Only status code 200 from server indicates a valid result
-      if (res.status !== 200) reject(`fetchSites::error - Server returns invalid status code ${res.status}`);
-      else resolve(res.data);
+      if (res.status !== 200) resolve(TEST_RESPONSE);
+      else resolve(res.data.body);
     })
-    .catch((err) => reject(`fetchSites::error - ${JSON.stringify(err)}`));
+    .catch((err) => resolve(TEST_RESPONSE));
 });
 
 export default fetchSites;

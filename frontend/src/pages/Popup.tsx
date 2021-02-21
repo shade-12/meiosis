@@ -49,25 +49,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const REC_SITES = [
-  {
-    title: 'Why the vegan diet is not always green',
-    url: 'https://www.bbc.com/future/article/20200211-why-the-vegan-diet-is-not-always-green',
-  },
-  {
-    title: 'VEGANISM IS ‘SINGLE BIGGEST WAY’ TO REDUCE OUR ENVIRONMENTAL IMPACT, STUDY FINDS',
-    url: 'https://www.independent.co.uk/life-style/health-and-families/veganism-environmental-impact-planet-reduced-plant-based-diet-humans-study-a8378631.html',
-  },
-  {
-    title: 'Why Going Vegan Is One of the Best Things You Can Do for the Environment',
-    url: 'https://www.forksoverknives.com/wellness/vegan-diet-helps-environmental-sustainability/',
-  },
-  {
-    title: 'Is a vegan diet better for the environment?',
-    url: 'https://www.bbcgoodfood.com/howto/guide/vegan-diet-better-environment#:~:text=Studies%20show%20that%20vegan%20diets,because%20they%20only%20ate%20fruit!',
-  },
-];
-
 const CIRCLE_COLORS = [PASTEL_PINK, '#f0b0a8', BABY_PINK, '#F3C1B9'];
 
 const ALIGN_ARR = ['end', 'end', 'start', 'start'];
@@ -76,12 +57,14 @@ const JUSTIFY_ARR = ['end', 'start', 'end', 'start'];
 function Popup() {
   const classes = useStyles();
   const [inputURL, setInputURL] = useState('');
-  const [results, setResults] = useState([]);
+  const [citation, setCitation] = useState('');
+  const [sites, setSites] = useState<any[]>([]);
+  const [keywords, setKeywords] = useState<any[]>([]);
+  const [showCit, setShowCit] = useState(false);
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
       const currentURL = tabs[0].url;
-      console.log(currentURL);
       setInputURL(currentURL || '');
     });
   });
@@ -93,14 +76,21 @@ function Popup() {
   const startMeiosis = () => {
     fetchSites(inputURL).then((res) => {
       console.log(res);
-      // Save result array to 'results' state
+      setCitation(res.citation);
+      setSites(res.body.sites);
+      setKeywords(res.keywords);
     });
   };
 
-  const generateCitation = () => {};
+  const generateCitation = () => setShowCit(true);
 
   const redirectToHome = () => {
     if (chrome.runtime.openOptionsPage) {
+      // Set local storage
+      localStorage.setItem('inputURL', inputURL);
+      localStorage.setItem('keywords', JSON.stringify(keywords));
+      localStorage.setItem('citation', citation);
+      localStorage.setItem('sites', JSON.stringify(sites));
       chrome.runtime.openOptionsPage();
     }
   };
@@ -142,65 +132,78 @@ function Popup() {
 
         <br />
 
-        <Typography variant="h6" align="center">
-          The following websites discuss similar topics as your current one:
-        </Typography>
+        {
+        keywords.length > 0
+        && (
+        <>
+          <Typography variant="h6" align="center">
+            The following websites discuss similar topics as your current one:
+          </Typography>
 
-        <br />
+          <br />
 
-        <form className={classes.form} noValidate autoComplete="off">
-          <TextField
-            value={inputURL}
-            onChange={handleChange}
-            InputProps={{
-              style: {
-                fontSize: 20,
-                padding: '0.5rem',
-              },
-            }}
-            className={classes.textfield}
-          />
-        </form>
+          <form className={classes.form} noValidate autoComplete="off">
+            <TextField
+              value={inputURL}
+              onChange={handleChange}
+              InputProps={{
+                style: {
+                  fontSize: 20,
+                  padding: '0.5rem',
+                },
+              }}
+              className={classes.textfield}
+            />
+          </form>
 
-        <br />
+          <br />
+          {showCit
+            ? (
+              <Typography variant="body1" align="center" paragraph>
+                {citation}
+              </Typography>
+            ) : (
+              <Button onClick={generateCitation} className={classes.buttonOutline}>
+                <Button className={classes.button}>
+                  <Typography variant="h6">
+                    Generate Citation
+                  </Typography>
+                </Button>
+              </Button>
+            )}
 
-        <Button onClick={generateCitation} className={classes.buttonOutline}>
-          <Button className={classes.button}>
-            <Typography variant="h6">
-              Generate Citation
-            </Typography>
+          <br />
+          <br />
+
+          <div>
+            <Grid container direction="row">
+              {sites.map((site, i) => (
+                <Circle
+                  key={i}
+                  color={CIRCLE_COLORS[i]}
+                  size={160}
+                  title={site.title}
+                  url={site.link}
+                  align={ALIGN_ARR[i]}
+                  justify={JUSTIFY_ARR[i]}
+                />
+              ))}
+            </Grid>
+          </div>
+
+          <br />
+          <br />
+
+          <Button onClick={redirectToHome} className={classes.buttonOutline}>
+            <Button className={classes.button}>
+              <Typography variant="h6">
+                More Details
+              </Typography>
+            </Button>
           </Button>
-        </Button>
-
-        <br />
-        <br />
-
-        <div>
-          <Grid container direction="row">
-            {REC_SITES.map((site, i) => (
-              <Circle
-                key={i}
-                color={CIRCLE_COLORS[i]}
-                size={160}
-                title={site.title}
-                url={site.url}
-                align={ALIGN_ARR[i]}
-                justify={JUSTIFY_ARR[i]}
-              />
-            ))}
-          </Grid>
-        </div>
-
-        <br />
-        <br />
-
-        <Button onClick={redirectToHome} className={classes.buttonOutline}>
-          <Button className={classes.button}>
-            <Typography variant="h6">
-              More Details
-            </Typography>
-          </Button>
-        </Button>
+        </>
+        )
+        }
 
       </Box>
     </ThemeProvider>
