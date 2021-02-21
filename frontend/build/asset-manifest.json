@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.165309a8.chunk.css",
+    "main.css": "/static/css/main.89955252.chunk.css",
     "main.js": "/static/js/main.fa4464d5.chunk.js",
     "main.js.map": "/static/js/main.fa4464d5.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.42455ed1.js",
@@ -10,14 +10,14 @@
     "static/js/3.104144fd.chunk.js": "/static/js/3.104144fd.chunk.js",
     "static/js/3.104144fd.chunk.js.map": "/static/js/3.104144fd.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.165309a8.chunk.css.map": "/static/css/main.165309a8.chunk.css.map",
+    "static/css/main.89955252.chunk.css.map": "/static/css/main.89955252.chunk.css.map",
     "static/js/2.ae8f86a2.chunk.js.LICENSE.txt": "/static/js/2.ae8f86a2.chunk.js.LICENSE.txt",
     "static/media/meiosis-logo.d0db3a33.svg": "/static/media/meiosis-logo.d0db3a33.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.42455ed1.js",
     "static/js/2.ae8f86a2.chunk.js",
-    "static/css/main.165309a8.chunk.css",
+    "static/css/main.89955252.chunk.css",
     "static/js/main.fa4464d5.chunk.js"
   ]
 }
