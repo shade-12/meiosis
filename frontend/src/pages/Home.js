@@ -7,15 +7,16 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Circle from '../components/Circle';
+import CircleRectangle from '../components/CircleRectangle';
 
 // Constants import
 import { HOME } from '../constants/routes';
+import { BABY_PINK, PASTEL_PINK, DEEP_CHAMPAGNE, GOLD_CRAYOLA } from '../constants/colors';
 
 
 const useStyles = makeStyles(theme => ({
 	form: {
-		width: '70%'
+		width: '50%'
 	},
 	textfield: {
         borderRadius: '10px',
@@ -27,8 +28,22 @@ const useStyles = makeStyles(theme => ({
 		color: 'white',
 		textTransform: 'None',
 		padding: theme.spacing(1, 4),
-		borderRadius: '8px',
 		backgroundColor: theme.palette.secondary.main
+	},
+	buttonCitation: {
+		color: 'white',
+		textTransform: 'None',
+		padding: theme.spacing(1, 4),
+		backgroundColor: theme.palette.secondary.main
+	}, 
+	buttonOutline: {
+		border: '3px solid #484B70',
+		marginLeft: '2%',
+		marginTop: '-0.5%',
+	},
+	rectangle: { 
+		height: '400px', 
+		backgroundColor: 'red'
 	}
 }));
 
@@ -51,18 +66,20 @@ const REC_SITES = [
 	}
 ];
 
+const CIRCLE_COLORS = [PASTEL_PINK, DEEP_CHAMPAGNE, BABY_PINK, GOLD_CRAYOLA]; 
+
 function Home() {
 	const classes = useStyles();
 	const [inputURL, setInputURL] = useState("");
 	const [redirect, setRedirect] = useState(false);
 
-    useEffect(() => {
-        // chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-        //     const currentURL = tabs[0].url;
-        //     console.log(currentURL);
-        //     setInputURL(currentURL);
-        // });
-    });
+    // useEffect(() => {
+    //     // chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    //     //     const currentURL = tabs[0].url;
+    //     //     console.log(currentURL);
+    //     //     setInputURL(currentURL);
+    //     // });
+    // });
 
 	const handleChange = (event) => setInputURL(event.target.value);
 
@@ -70,69 +87,88 @@ function Home() {
 
 	};
 
-	const redirectToHome = () => setRedirect(true);
+	const startMeiosis = () => {
+		// pass inputURL to backend
+	}; 
+
+	const redirectToHome = () => {
+
+	};
 
 	if (redirect)
         return <Redirect to={HOME} />
 
-	return (
-		<React.Fragment>
-			
-			<Typography variant="h6" align="center">
-				The following websites discuss similar topics as your current one:
-			</Typography>
-			
-			<br />
-
-            <Grid container direction="row" justify="center" spacing={2}>
-                <Grid item>
-                    <form className={classes.form} noValidate autoComplete="off">
-                        <TextField
-                            value={inputURL}
-                            onChange={handleChange}
-                            InputProps={{
-                                style: {
-                                    fontSize: 20,
-                                    padding: '0.5rem'
-                                }
-                            }}
-                            className={classes.textfield}
-                        />
-                    </form>
-                </Grid>
-                
-                <Grid item>
-                    <Button onClick={generateCitation} className={classes.button}>
-                        <Typography variant="h6">
-                            <b>Generate Citation</b>
-                        </Typography>
-                    </Button>
-                </Grid>
-            </Grid>
-
-			<br /> 
-			
-			<Grid container direction="row" justify="center">
-				{REC_SITES.map((site, i) => {
-					return (
-						<Circle
-                            key={i}
-							size={160}
-							title={site.title}
-							url={site.url}
-						/>
-					);
-				})}
-			</Grid>
-
-			<Button onClick={startMeiosis} className={classes.button}>
-				<Typography variant="h6">
-					<b>Undergo Meiosis Again</b>
+		return (
+			<React.Fragment>
+				
+				<Typography variant="h6" align="center">
+					The following websites discuss similar topics as your current one:
 				</Typography>
-			</Button>
-            
-		</React.Fragment>
-	);
+				
+				<br />
+
+				<Grid container direction="row">
+					<form className={classes.form} noValidate autoComplete="off">
+						<TextField
+							value={inputURL}
+							onChange={handleChange}
+							InputProps={{
+								style: {
+									fontSize: 20,
+									padding: '0.5rem'
+								}
+							}}
+							className={classes.textfield}
+						/>
+					</form> 
+		            <Button onClick={generateCitation} className={classes.buttonOutline}>
+						<Button onClick={generateCitation} className={classes.buttonCitation}>
+							<Typography variant="h6">
+								Generate Citation
+							</Typography>
+						</Button>
+					</Button>
+				</Grid>
+
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				<br /> 
+				
+				<Grid container direction="row">
+					{REC_SITES.map((site, i) => {
+						return (
+							<CircleRectangle
+								key={i}
+								color={CIRCLE_COLORS[i]}
+								size={180}
+								title={site.title}
+								url={site.url}
+							/>
+						);
+					})}
+				</Grid>
+	
+				<br />
+				<br />
+				<Button onClick={startMeiosis} className={classes.buttonOutline}>
+					<Button onClick={startMeiosis} className={classes.button}>
+						<Typography variant="h6">
+							Undergo Meiosis Again
+						</Typography>
+					</Button>
+				</Button>
+				
+			</React.Fragment>
+		);
 }
 
 export default Home;

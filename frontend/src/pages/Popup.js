@@ -11,7 +11,7 @@ import Circle from '../components/Circle';
 
 // Constants import
 import { HOME } from '../constants/routes';
-import { BABY_PINK, DEEP_CHAMPAGNE, GOLD_CRAYOLA, PASTEL_PINK } from '../constants/colors';
+import { BABY_PINK, PASTEL_PINK } from '../constants/colors';
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,11 +25,13 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
 	button: {
-		color: theme.palette.secondary.main,
+		color: 'white',
 		textTransform: 'None',
 		padding: theme.spacing(1, 4),
+		backgroundColor: '#484B70'
+	},
+	buttonOutline: {
 		border: '3px solid #484B70',
-		marginTop: '-5px'
 	}
 }));
 
@@ -53,10 +55,9 @@ const REC_SITES = [
 ];
 
 const CIRCLE_COLORS = [PASTEL_PINK,'#f0b0a8', BABY_PINK, '#F3C1B9']; 
-//const CIRCLE_COLORS = [PASTEL_PINK, DEEP_CHAMPAGNE, BABY_PINK, GOLD_CRAYOLA]; 
 
-const ALIGN_ARR = ['end', 'end', 'start', 'start']; 
-const JUSTIFY_ARR = ['end', 'start', 'end', 'start'];
+//const ALIGN_ARR = ['end', 'end', 'start', 'start']; 
+//const JUSTIFY_ARR = ['end', 'start', 'end', 'start'];
 
 function Popup() {
 	const classes = useStyles();
@@ -90,10 +91,12 @@ function Popup() {
 		<React.Fragment>
 
 			<br /> 
-            <Button onClick={startMeiosis} className={classes.button}>
-				<Typography variant="h6">
-					Start Meiosis
-				</Typography>
+            <Button onClick={startMeiosis} className={classes.buttonOutline}>
+				<Button onClick={startMeiosis} className={classes.button}>
+					<Typography variant="h6">
+						Start Meiosis
+					</Typography>
+				</Button>
 			</Button>
 
 			<br /> 
@@ -120,10 +123,12 @@ function Popup() {
 			
 			<br /> 
 
-			<Button onClick={generateCitation} className={classes.button}>
-				<Typography variant="h6">
-					Generate Citation
-				</Typography>
+            <Button onClick={generateCitation} className={classes.buttonOutline}>
+				<Button onClick={generateCitation} className={classes.button}>
+					<Typography variant="h6">
+						Generate Citation
+					</Typography>
+				</Button>
 			</Button>
 
 			<br /> 
@@ -139,8 +144,6 @@ function Popup() {
 								size={160}
 								title={site.title}
 								url={site.url}
-								align={ALIGN_ARR[i]} 
-								justify={JUSTIFY_ARR[i]}
 							/>
 						);
 					})}
@@ -149,11 +152,13 @@ function Popup() {
 
 			<br />
 			<br />
-			
-			<Button onClick={redirectToHome} className={classes.button}>
-				<Typography variant="h6">
-					More Details
-				</Typography>
+
+            <Button onClick={redirectToHome} className={classes.buttonOutline}>
+				<Button onClick={redirectToHome} className={classes.button}>
+					<Typography variant="h6">
+						More Details
+					</Typography>
+				</Button>
 			</Button>
             
 		</React.Fragment>

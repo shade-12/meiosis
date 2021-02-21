@@ -22,7 +22,7 @@ const theme = createMuiTheme({
                 margin: '-10px'
             }, 
             container: {
-                marginLeft: '24px'
+                justifyContent: 'center',
             }
        } 
     }

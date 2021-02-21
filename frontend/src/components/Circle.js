@@ -8,15 +8,13 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
 function Circle(props) {
-    const { size, color, title, url, align, justify } = props;
+    const { size, color, title, url} = props;
     const useStyles = makeStyles(theme => ({
         circle: {
             backgroundColor: color, 
             width: size,
             height: size,
             borderRadius: '50%',
-            alignSelf: align,
-            justifySelf: justify, 
         },
         link: {
             color: theme.palette.secondary.main
