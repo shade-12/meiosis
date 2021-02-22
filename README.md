@@ -10,9 +10,9 @@ A URL of the active site is sent to the backend server to run our scraping scrip
 
 ![popup-demo](https://github.com/shade-12/meiosis/blob/main/assets/popup-demo.png?raw=true)
 
-![citation-demo](https://github.com/shade-12/meiosis/blob/main/assets/citation-demo.png?raw=true)
-
 ![sites-demo](https://github.com/shade-12/meiosis/blob/main/assets/sites-demo.png?raw=true)
+
+![citation-demo](https://github.com/shade-12/meiosis/blob/main/assets/citation-demo.png?raw=true)
 
 ![home-demo](https://github.com/shade-12/meiosis/blob/main/assets/home-demo.png?raw=true)
 
